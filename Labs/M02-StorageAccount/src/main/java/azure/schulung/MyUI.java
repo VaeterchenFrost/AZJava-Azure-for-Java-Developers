@@ -35,18 +35,27 @@ import java.util.Set;
 
 /**
  * To start this server application use 'mvn clean install jetty:run'
- * 
  */
 @Theme("mytheme")
 public class MyUI extends UI {
 
-	final static String CONNECTION_KEY = "DefaultEndpointsProtocol=https;AccountName=uebung2;AccountKey=Ejv3MUBx/8GQLTbNEpGI4gVsFNkl6DrSa4Fr7objmpmbhnACKpD6pZIXMVbGt+XlN7hSHCLp+v40+k/trIz+2Q==;EndpointSuffix=core.windows.net";
+    final static String STORAGE_ACCOUNT_NAME = "ibuoeqpzhmwnawebapp";
+    // TODO: SECURITY key vault
+    final static String STORAGE_ACCOUNT_KEY = "Q1hJKW8B+ulHMnwOpws7w2PlWIHQpiLH10+2SyixgA00PsSSzsSLisvzT5w3GIXeKkMfyDNHaKxZ1fJjCfYg6w==";
+    // From Storage account - access keys
+    final static String CONNECTION_KEY = "DefaultEndpointsProtocol=https"
+            + ";AccountName=" + STORAGE_ACCOUNT_NAME
+            + ";AccountKey=" + STORAGE_ACCOUNT_KEY
+            + ";EndpointSuffix=core.windows.net";
 
-	final static String STORAGE_ACCOUNT_NAME = "uebung2";
+    TreeGrid<Entry> treeGrid = new TreeGrid<>();
 
-	final static String STORAGE_ACCOUNT_KEY = "Ejv3MUBx/8GQLTbNEpGI4gVsFNkl6DrSa4Fr7objmpmbhnACKpD6pZIXMVbGt+XlN7hSHCLp+v40+k/trIz+2Q==";
+    Grid<BlobSignedIdentifier> bsi = new Grid<>("Access");
 
-	TreeGrid<Entry> treeGrid = new TreeGrid<>();
+    TextField url = new TextField("URL");
+
+    TextArea metaData = new TextArea("Metadata");
+    private BlobServiceClient serviceClient;
 
 	Grid<BlobSignedIdentifier> bsi = new Grid<>("Access");
 
