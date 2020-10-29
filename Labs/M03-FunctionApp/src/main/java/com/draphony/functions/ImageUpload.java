@@ -1,5 +1,10 @@
 package com.draphony.functions;
 
+import java.io.ByteArrayInputStream;
+import java.util.*;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
 import com.azure.storage.blob.BlobContainerClient;
 import com.azure.storage.blob.BlobContainerClientBuilder;
 import com.azure.storage.blob.models.BlobHttpHeaders;
@@ -8,15 +13,9 @@ import com.azure.storage.queue.QueueClient;
 import com.azure.storage.queue.QueueClientBuilder;
 import com.azure.storage.queue.models.SendMessageResult;
 import com.microsoft.azure.functions.*;
-import com.microsoft.azure.functions.annotation.AuthorizationLevel;
-import com.microsoft.azure.functions.annotation.FunctionName;
-import com.microsoft.azure.functions.annotation.HttpTrigger;
-import org.bson.Document;
+import com.microsoft.azure.functions.annotation.*;
 
-import java.io.ByteArrayInputStream;
-import java.util.Date;
-import java.util.HashMap;
-import java.util.UUID;
+import org.bson.Document;
 
 /**
  * Azure Functions with HTTP Trigger.
