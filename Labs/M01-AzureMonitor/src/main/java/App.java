@@ -73,14 +73,15 @@ public class App {
             logger.info("{}: {}", finalResponse.getStatusCode(), finalResponse.getBodyAsString().block());
     }
 
-    private static String BuildAuth(String workspaceId, String sharedKey, String stringToHash) throws NoSuchAlgorithmException, InvalidKeyException {
+    private static String buildAuth(String workspaceId, String sharedKey, String stringToHash)
+            throws NoSuchAlgorithmException, InvalidKeyException {
         Mac mac = Mac.getInstance("HmacSHA256");
 
-        SecretKeySpec secret_key = new SecretKeySpec(DatatypeConverter.parseBase64Binary(sharedKey), "HmacSHA256");
-        mac.init(secret_key);
-        String hashedString = DatatypeConverter.printBase64Binary(mac.doFinal(stringToHash.getBytes(StandardCharsets.UTF_8)));
+        SecretKeySpec secretKey = new SecretKeySpec(DatatypeConverter.parseBase64Binary(sharedKey), mac.getAlgorithm());
+        mac.init(secretKey);
+        String hashedString = DatatypeConverter
+                .printBase64Binary(mac.doFinal(stringToHash.getBytes(StandardCharsets.UTF_8)));
 
-        // return String.format("SharedKey %s:%s", workspaceId, hashedString);
-        return "SharedKey " + workspaceId + ":" + hashedString;
+        return String.format("SharedKey %s:%s", workspaceId, hashedString);
     }
 }
