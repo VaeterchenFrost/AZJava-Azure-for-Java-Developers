@@ -1,8 +1,12 @@
 package com.draphony.functions;
 
-import com.azure.storage.blob.sas.BlobSasPermission;
-import com.azure.storage.blob.sas.BlobServiceSasQueryParameters;
-import com.azure.storage.blob.sas.BlobServiceSasSignatureValues;
+import java.time.LocalDateTime;
+import java.time.OffsetDateTime;
+import java.util.*;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
+import com.azure.storage.blob.sas.*;
 import com.azure.storage.common.StorageSharedKeyCredential;
 import com.azure.storage.common.sas.SasProtocol;
 import com.azure.storage.queue.QueueClient;
@@ -17,18 +21,9 @@ import com.microsoft.azure.functions.annotation.FunctionName;
 import com.microsoft.azure.functions.annotation.TimerTrigger;
 import com.mongodb.ConnectionString;
 import com.mongodb.MongoClientSettings;
-import com.mongodb.client.MongoClient;
-import com.mongodb.client.MongoClients;
-import com.mongodb.client.MongoCollection;
-import com.mongodb.client.MongoDatabase;
-import org.bson.Document;
+import com.mongodb.client.*;
 
-import java.io.InputStream;
-import java.time.LocalDateTime;
-import java.time.OffsetDateTime;
-import java.util.Date;
-import java.util.LinkedList;
-import java.util.List;
+import org.bson.Document;
 
 /**
  * Azure Functions with Timer trigger.
