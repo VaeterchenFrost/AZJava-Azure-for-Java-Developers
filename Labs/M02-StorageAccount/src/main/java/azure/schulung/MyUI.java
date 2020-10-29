@@ -10,7 +10,6 @@ import com.azure.storage.blob.BlobServiceClientBuilder;
 import com.azure.storage.blob.models.BlobContainerItem;
 import com.azure.storage.blob.models.BlobItem;
 import com.azure.storage.blob.models.BlobSignedIdentifier;
-import com.azure.storage.blob.models.PublicAccessType;
 import com.azure.storage.blob.sas.BlobSasPermission;
 import com.azure.storage.blob.sas.BlobServiceSasQueryParameters;
 import com.azure.storage.blob.sas.BlobServiceSasSignatureValues;
@@ -107,12 +106,12 @@ public class MyUI extends UI {
                         .containerClient(entry.getBlobContainerClient())
                         .buildClient();
                 blobLeaseClient.acquireLease(60);
-                Notification.show("Lease Setted!");
+                Notification.show("Lease set!");
             } else if (entry.blobClient != null) {
                 BlobLeaseClient blobLeaseClient = new BlobLeaseClientBuilder().blobClient(entry.blobClient)
                         .buildClient();
                 blobLeaseClient.acquireLease(60);
-                Notification.show("Lease Setted!");
+                Notification.show("Lease set!");
             } else {
                 Notification.show("No blobcc");
             }
@@ -125,7 +124,7 @@ public class MyUI extends UI {
 
         Set<Entry> set = treeGrid.getSelectedItems();
         if (set.isEmpty()) {
-            Notification.show("No selction");
+            Notification.show("No selection");
             return;
         }
         Entry entry = set.iterator().next();
